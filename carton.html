@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8" />
+        <title>حساب تكلفة الكرتونة</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                direction: rtl;
+                background: #0d2c3d;
+                color: white;
+                text-align: center;
+                padding: 20px;
+            }
+            h2 {
+                color: #f5c542;
+            }
+            .box {
+                background: #1e3a4c;
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 10px;
+            }
+            input {
+                margin: 5px;
+                padding: 5px;
+                width: 120px;
+            }
+            button {
+                padding: 10px 20px;
+                background: #f5c542;
+                border: none;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            button:hover {
+                background: #ffdb6e;
+            }
+            .result {
+                background: #16313f;
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .logo {
+                width: 120px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- شعار الشركة -->
+        <img src="logo.png" alt="شعار الشركة" class="logo" />
+
+        <h2>💰 حساب تكلفة شيت الكرتون</h2>
+
+        <!-- الطبقة الأولى -->
+        <div class="box">
+            <h3>الطبقة الأولى</h3>
+            <input type="number" id="l1" placeholder="الطول" />
+            <input type="number" id="w1" placeholder="العرض" />
+            <input type="number" id="g1" placeholder="جرام" />
+            <input type="number" id="p1" placeholder="سعر الطن" />
+            <input type="number" id="m1" placeholder="مصنعية" />
+        </div>
+
+        <!-- الطبقة الوسطى -->
+        <div class="box">
+            <h3>الطبقة الوسطى</h3>
+            <input type="number" id="l2" placeholder="الطول" />
+            <input type="number" id="w2" placeholder="العرض" />
+            <input type="number" id="g2" placeholder="جرام" />
+            <input type="number" id="p2" placeholder="سعر الطن" />
+            <input type="number" id="f2" placeholder="معامل السنة" />
+        </div>
+
+        <!-- الطبقة الأخيرة -->
+        <div class="box">
+            <h3>الطبقة الأخيرة</h3>
+            <input type="number" id="l3" placeholder="الطول" />
+            <input type="number" id="w3" placeholder="العرض" />
+            <input type="number" id="g3" placeholder="جرام" />
+            <input type="number" id="p3" placeholder="سعر الطن" />
+            <input type="number" id="m3" placeholder="مصنعية" />
+        </div>
+
+        <!-- التكاليف الإضافية -->
+        <div class="box">
+            <h3>التكاليف الإضافية</h3>
+            <input type="number" id="print" placeholder="طباعة" />
+            <input type="number" id="cut" placeholder="تكسير" />
+            <input type="number" id="emboss" placeholder="مضلع" />
+            <input type="number" id="extra" placeholder="تكاليف أخرى" />
+        </div>
+
+        <button onclick="calculate()">احسب التكلفة</button>
+
+        <div class="result" id="result">⚡ النتيجة ستظهر هنا</div>
+
+        <script>
+            function calculate() {
+                // الطبقة الأولى
+                let c1 =
+                    (document.getElementById("l1").value || 0) *
+                        (document.getElementById("w1").value || 0) *
+                        (document.getElementById("g1").value || 0) *
+                        (document.getElementById("p1").value || 0) +
+                    (document.getElementById("m1").value || 0);
+
+                // الطبقة الوسطى
+                let c2 =
+                    (document.getElementById("l2").value || 0) *
+                    (document.getElementById("w2").value || 0) *
+                    (document.getElementById("g2").value || 0) *
+                    (document.getElementById("p2").value || 0) *
+                    (document.getElementById("f2").value || 0);
+
+                // الطبقة الأخيرة
+                let c3 =
+                    (document.getElementById("l3").value || 0) *
+                        (document.getElementById("w3").value || 0) *
+                        (document.getElementById("g3").value || 0) *
+                        (document.getElementById("p3").value || 0) +
+                    (document.getElementById("m3").value || 0);
+
+                // التكاليف الإضافية
+                let extras =
+                    (+document.getElementById("print").value || 0) +
+                    (+document.getElementById("cut").value || 0) +
+                    (+document.getElementById("emboss").value || 0) +
+                    (+document.getElementById("extra").value || 0);
+
+                let total = c1 + c2 + c3 + extras;
+
+                document.getElementById(
+                    "result"
+                ).innerText = `✅ تكلفة الشيت = ${total.toFixed(2)} جنيه`;
+            }
+        </script>
+    </body>
+</html>
